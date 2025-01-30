@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'social/style.css' %}">
+</head>
+<body>
+    <div id="title">
+    <h1>Lista klubów w ekstraklasie:</h1>
+    </div>
+    <div id="content" class="container">
+        <div class="club-grid">
+            {% for key, club in clubs.items %}
+                <div class="club-card">
+                    <img src="{% static 'social/logos/' %}{{ club.logo }}" alt="{{ club.name }}">
+                    <h3>{{ club.name }}</h3>
+                    <a href="{% url 'club_detail' key %}" class="club-link">Profil klubu →</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
