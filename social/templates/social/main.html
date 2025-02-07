@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="{% static 'social/style.css' %}">
 </head>
 <body>
+    <div class="navbar">
+        <h1>Ekstraklasa</h1>
+            <button><a href="{% url 'loginn' %}">Zaloguj sie</a></button>
+            <button><a href="{% url 'signup' %}">Zarejestruj sie</a></button>
+    </div>
     <div id="title">
     <h1>Lista klubów w ekstraklasie:</h1>
     </div>
