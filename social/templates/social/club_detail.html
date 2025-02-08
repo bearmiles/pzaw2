@@ -15,5 +15,22 @@
     {{ club.name }}
     <a href="{% url 'index'%}">Powrót na strone główną</a>
     </div>
+    <div class="commentSec">
+            <h3>Komentarze</h3>
+        {% for comment in comments %}
+            <p class="nicku"><strong>{{ comment.user.username }}</strong> ({{ comment.created }}):</p>
+            <p class="contentBody">{{ comment.body }}</p>
+        {% empty %}
+            <p>Brak komentarzy.</p>
+        {% endfor %}
+    </div>
+        <div class="addCom">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Dodaj komentarz</button>
+        </form>
+    </div>
+
 </body>
 </html>

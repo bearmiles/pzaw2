@@ -57,7 +57,7 @@ body {
 }
 .navbar h1{
     /* float: right; */
-    margin-left: 300px;
+    margin-left: 75px;
     font-size: 40px;
     text-align: center;
     flex-grow: 1;
@@ -73,4 +73,37 @@ button{
     margin: 5px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 500;
+}
+.navbar img{
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+}
+
+.navbar h2{
+    color: white;
+    font-size: 40px;
+    margin-right: 10px;
+}
+.nicku{
+    color: white;
+    font-size: 15px;
+}
+
+.commentSec{
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    margin-top: 30%;
+    text-align: center;
+    background-color: navy;
+}
+.contentBody{
+    overflow-wrap: break-word;
+    white-space: normal;
+    color: pink
+}
+
+.addCom{
+    text-align: center;
 }

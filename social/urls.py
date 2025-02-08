@@ -8,4 +8,5 @@ urlpatterns = [
     path("club/<str:club_name>", views.club_detail, name="club_detail"),
     path("login/", views.loginn, name="loginn"),
     path("signup/", views.signup, name="signup"),
+    path("logoutt/", views.logoutt, name="wyloguj"),
 ]

@@ -4,7 +4,8 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import Profile
+from .models import Profile, Comment
+from .forms import CommentForm
 
 
 
@@ -27,7 +28,7 @@ def signup(request):
             fnm = request.POST.get('fnm')
             pwd = request.POST.get('pwd')
             print(fnm, pwd)
-            my_user = User.objects.create_user(fnm, pwd)
+            my_user = User.objects.create_user(username=fnm, password=pwd)
             my_user.save()
             user_model = User.objects.get(username=fnm)
             new_profile = Profile.objects.create(user=user_model, id_user=user_model.id)
@@ -58,13 +59,39 @@ def loginn(request):
         return render(request,'social/loginn.html', {'invalid': invalid})
     return render(request, 'social/loginn.html')
 
-@login_required(login_url="social/loginn.html")
+@login_required(login_url="loginn")
 def index(request):
-    return render(request, "social/main.html", {"title": "Ekstraklasa", "clubs": clubs})
+    profile = Profile.objects.filter(user=request.user).first()
+    return render(request, "social/main.html", {"title": "Ekstraklasa", "clubs": clubs, "profile": profile, "user": request.user})
 
+
+@login_required(login_url="loginn")
 def club_detail(request, club_name):
-    if club_name in clubs:
-        return render(request, "social/club_detail.html", {"title": clubs[club_name]["name"], "club" : clubs[club_name]})
+    if club_name not in clubs:
+        return HttpResponse("BŁĄD STRONY")
+
+    comments = Comment.objects.filter(club=club_name).order_by("-created")
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.club = club_name
+            comment.save()
+            return redirect(f"/club/{club_name}")
     else:
-        return HttpResponse("BŁAD STRONY")
+        form = CommentForm()
+
+    return render(request, "social/club_detail.html", {
+        "title": clubs[club_name]["name"],
+        "club": clubs[club_name],
+        "comments": comments,
+        "form": form,
+    })
+
+@login_required(login_url="loginn")
+def logoutt(request):
+    logout(request)
+    return redirect("/")
 

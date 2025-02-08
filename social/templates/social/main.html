@@ -10,9 +10,16 @@
 <body>
     <div class="navbar">
         <h1>Ekstraklasa</h1>
+    {% if request.user.is_authenticated %}
+    <h2>{{ user.username }}</h2>
+    <img src="{% static 'social/prof/dc2.png' %}" alt="Profilowe zdjęcie {{ user.username }}">
+    <button><a href="{% url 'wyloguj' %}">Wyloguj sie</a></button>
+    {% else %}
+        <h1>Ekstraklasa</h1>
             <button><a href="{% url 'loginn' %}">Zaloguj sie</a></button>
             <button><a href="{% url 'signup' %}">Zarejestruj sie</a></button>
-    </div>
+    {% endif %}
+</div>
     <div id="title">
     <h1>Lista klubów w ekstraklasie:</h1>
     </div>
