@@ -8,6 +8,7 @@ body {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white;
     text-decoration: underline;
+    margin-right: 20px;
 }
 
 
@@ -106,4 +107,22 @@ button{
 
 .addCom{
     text-align: center;
+}
+.title2{
+    margin-left: 100px;
+}
+.cointainer2{
+    border-radius: 30px;
+    text-align: center;
+    justify-content: center;
+    background-color: yellow;
+    padding: 50px;
+    gap: 30px;
+}
+.cointainer2 button{
+    margin-bottom: 40px;
+}
+.cointainer2 p{
+    font-size: 25px;
+    color: black;
 }

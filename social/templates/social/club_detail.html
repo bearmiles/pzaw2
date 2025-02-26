@@ -11,9 +11,12 @@
     <div id="title">
     <h1>{{club.name}}</h1>
     </div>
-    <div id="content" class="container">
-    {{ club.name }}
-    <a href="{% url 'index'%}">Powrót na strone główną</a>
+    <div id="content" class="cointainer2">
+    <h1>{{ club.name }}</h1>
+    <br />
+    <p>{{ club.history }}</p>
+    <br />
+    <button><a href="{% url 'index'%}">Powrót na strone główną</a></button>
     </div>
     <div class="commentSec">
             <h3>Komentarze</h3>
